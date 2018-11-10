@@ -1,0 +1,98 @@
+---
+title: "Fundamental data type in R"
+author: "Mike Yang"
+date: "10 November 2018"
+output:
+  html_document: default
+---
+```{r message=FALSE}
+library(tidyverse)
+```
+
+##Summary
+
+> Although R has object-oriented features, methods are not part of the class definitions. Methods in R look just like normal functions, such as summary().
+
+> Data type in R
+
+* __vector__
+    + roughly, there are two different kinds of vectors: atomic vectors and lists (generic vectors).
+    + a single number (e.g., 3) is treated as a vector with only one element.
+  
+* __list__
+    + Virtually every object you'll run across in R is really just a list.
+  
+    + Most objects that you'll deal with have the type "list".
+  
+    + If you want to actually "extract" an element from a list, you need to use the "[[]]" style of indexing.
+  
+    + If you have named elements of a list, instead of using the "[[]]" style of indexing mentioned previously, you can access them by appending $name instead. 
+
+* __matrix__ 
+
+* __data frame__
+    + data frames are lists of data representing different kinds of information taken at the same times, places, etc. 
+    + When you read in data from an external source, it will typically be in a data frame.
+
+##Create data type in R
+
+* The easiest way to directly create a multi-element vector is using the __c()__ (concatenate) function.
+
+* You can create lists directly using the __list()__ function.
+
+* Matrices can be created directly using __matrix()__.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#original article from 
+#https://www.nealgroothuis.name/introduction-to-data-types-and-objects-in-r/
+```
+
+
+### creating a list
+```{r}
+df <- list(a = c(1,2), b = c(2,4), c = "mikey")
+summary(df)
+```
+
+### access list element
+```{r}
+df[1]
+class(df[1])
+```
+
+```{r}
+df[[1]]
+class(df[[1]])
+```
+
+```{r}
+df$a
+class(df$a)
+```
+
+```{r}
+# convert list to tibble
+df_table <- as.tibble(df)
+```
+
+### create a matrix
+```{r}
+m <- matrix(c(1,2,3,4), nrow = 2, ncol = 2)
+```
+
+### return first row and first column of the matrix
+```{r}
+m[1,1]
+```
+
+### return column of the matrix
+```{r}
+m[,2]
+```
+
+### return row of the matrix
+```{r}
+m[2,]
+```
